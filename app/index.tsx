@@ -10,9 +10,9 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Tarjeta nombre={'Tarjeta 1'} />
-      <Tarjeta nombre={'Tarjeta 2'} />
-      <Tarjeta nombre={'Tarjeta 3'} />
+      <Tarjeta nombre={'Tarjeta 1'} audio={'../assets/sounds/stop.mp3'}/>
+      <Tarjeta nombre={'Tarjeta 2'} audio={'../assets/sounds/dale-dale-boca.mp3'}/>
+      <Tarjeta nombre={'Tarjeta 3'} audio={'../assets/sounds/stop.mp3'}/>
     </View>
   );
 }
