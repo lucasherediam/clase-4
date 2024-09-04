@@ -5,6 +5,26 @@ type Props = {
   nombre: string;
 };
 
+const Tarjeta = (props: Props) => {
+  const [isPressed, setIsPressed] = useState(false);
+
+  const changeValue = () => {
+    setIsPressed(!isPressed)
+  }
+  return (
+    <>
+      <Pressable
+        onPress={changeValue}
+        style={isPressed ? styles.onPressStyles : styles.unpressedStyles}
+      >
+        <Text style={isPressed ? styles.textOnPressStyles : styles.textStyles}>
+          {props.nombre}
+        </Text>
+      </Pressable>
+    </>
+  );
+};
+
 const styles = StyleSheet.create({
   onPressStyles: {
     backgroundColor: 'yellow',
@@ -33,23 +53,5 @@ const styles = StyleSheet.create({
     color: 'darkblue',
   },
 });
-
-const Tarjeta = (props: Props) => {
-  const [isPressed, setIsPressed] = useState(false);
-
-  return (
-    <>
-      <Pressable
-        onPressIn={() => setIsPressed(true)}
-        onPressOut={() => setIsPressed(false)}
-        style={isPressed ? styles.onPressStyles : styles.unpressedStyles}
-      >
-        <Text style={isPressed ? styles.textOnPressStyles : styles.textStyles}>
-          {props.nombre}
-        </Text>
-      </Pressable>
-    </>
-  );
-};
 
 export default Tarjeta;
