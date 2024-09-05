@@ -7,35 +7,6 @@ type Props = {
   audio: string;
 };
 
-const styles = StyleSheet.create({
-  onPressStyles: {
-    backgroundColor: 'yellow', 
-    height: 100,
-    width: 300,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: 10,
-  },
-  unpressedStyles: {
-    height: 100,
-    width: 300,
-    borderRadius: 10,
-    backgroundColor: 'darkblue',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: 10,
-  },
-  textStyles: {
-    textAlign: 'center',
-    color: 'white', 
-  },
-  textOnPressStyles: {
-    textAlign: 'center',
-    color: 'darkblue', 
-  },
-});
-
 const Tarjeta = (props: Props) => {
   const [isPressed, setIsPressed] = useState(false);
   const [sound, setSound] = useState<Audio.Sound | null>(null); // Estado para almacenar el sonido
@@ -73,17 +44,15 @@ const Tarjeta = (props: Props) => {
     }
   };
 
+  const changeValue = () => {
+    setIsPressed(!isPressed)
+    isPressed ? stopSound() : playSound();
+  }
+
   return (
     <>
       <Pressable
-        onPressIn={() => {
-          setIsPressed(true);
-          playSound(); 
-        }}
-        onPressOut={() => {
-          setIsPressed(false);
-          stopSound(); 
-        }}
+        onPressIn={changeValue}
         style={isPressed ? styles.onPressStyles : styles.unpressedStyles}
       >
         <Text style={isPressed ? styles.textOnPressStyles : styles.textStyles}>
@@ -93,5 +62,34 @@ const Tarjeta = (props: Props) => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  onPressStyles: {
+    backgroundColor: 'yellow', 
+    height: 100,
+    width: 300,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  unpressedStyles: {
+    height: 100,
+    width: 300,
+    borderRadius: 10,
+    backgroundColor: 'darkblue',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  textStyles: {
+    textAlign: 'center',
+    color: 'white', 
+  },
+  textOnPressStyles: {
+    textAlign: 'center',
+    color: 'darkblue', 
+  },
+});
 
 export default Tarjeta;
